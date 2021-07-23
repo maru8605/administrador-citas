@@ -4,12 +4,22 @@ import Cita from './component/Cita.js';
 
 function App() {
   
+  // localstorage
+  let citasInic = JSON.parse(localStorage.getItem('citas'));
+  if(!citasInic){
+    citasInic = []
+  }
+
   //Arr de citas
-  const [citas, setCitas] = useState([])
+  const [citas, setCitas] = useState(citasInic)
 
   useEffect( () => {
-    console.log('otro mensaje')
-  }, [citas])
+    if(citasInic){
+      localStorage.setItem('citas', JSON.stringify(citas));
+    }else{
+      localStorage.setItem('citas', JSON.stringify([]));
+    }
+  },[citas])
 
   //fn toma citas existentes + agrega nueva 
   const crearCita = cita =>{
