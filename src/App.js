@@ -7,6 +7,10 @@ function App() {
   //Arr de citas
   const [citas, setCitas] = useState([])
 
+  useEffect( () => {
+    console.log('otro mensaje')
+  }, [citas])
+
   //fn toma citas existentes + agrega nueva 
   const crearCita = cita =>{
     setCitas([...citas, cita]);
